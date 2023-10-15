@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PaymentMethods;
 use App\Http\Requests\StorePaymentMethodsRequest;
 use App\Http\Requests\UpdatePaymentMethodsRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class PaymentMethodsController extends Controller
 {
@@ -13,7 +14,10 @@ class PaymentMethodsController extends Controller
      */
     public function index()
     {
-        //
+        $paymentMethods = PaymentMethods::all();
+        return view('paymentMethods.index', [
+            'paymentMethods' => $paymentMethods
+        ]);
     }
 
     /**
@@ -21,7 +25,7 @@ class PaymentMethodsController extends Controller
      */
     public function create()
     {
-        //
+        return view('paymentMethods.create');
     }
 
     /**
@@ -29,7 +33,9 @@ class PaymentMethodsController extends Controller
      */
     public function store(StorePaymentMethodsRequest $request)
     {
-        //
+        $data = $request->all();
+        PaymentMethods::create($data);
+        return Redirect::route('paymentMethods.index');
     }
 
     /**
@@ -45,7 +51,9 @@ class PaymentMethodsController extends Controller
      */
     public function edit(PaymentMethods $paymentMethods)
     {
-        //
+        return view('paymentMethods.edit', [
+            'paymentMethods' => $paymentMethods
+        ]);
     }
 
     /**
@@ -53,7 +61,9 @@ class PaymentMethodsController extends Controller
      */
     public function update(UpdatePaymentMethodsRequest $request, PaymentMethods $paymentMethods)
     {
-        //
+        $data = $request->all();
+        $paymentMethods->update($data);
+        return Redirect::route('paymentMethods.index');
     }
 
     /**
@@ -61,6 +71,7 @@ class PaymentMethodsController extends Controller
      */
     public function destroy(PaymentMethods $paymentMethods)
     {
-        //
+        $paymentMethods->delete();
+        return Redirect::route('paymentMethods.index');
     }
 }

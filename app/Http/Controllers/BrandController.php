@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\HttpFoundation\Request;
 
 class BrandController extends Controller
 {
@@ -13,9 +15,10 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $obj = new Brand();
-        $brand = $obj->index();
-        return view ('brand.index', ['brand' => $brand]);
+        $brand = Brand::all();
+        return view('brand.index', [
+            'brand' => $brand
+        ]);
     }
 
     /**
@@ -23,7 +26,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('brand.create');
     }
 
     /**
@@ -31,7 +34,9 @@ class BrandController extends Controller
      */
     public function store(StoreBrandRequest $request)
     {
-        //
+        $data = $request->all();
+        Brand::create($data);
+        return Redirect::route('brand.index');
     }
 
     /**
@@ -45,9 +50,12 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Brand $brand)
+    public function edit(Brand $brand, Request $request)
     {
-        //
+        return view('brand.edit', [
+            'brand' => $brand
+        ]);
+
     }
 
     /**
@@ -55,14 +63,18 @@ class BrandController extends Controller
      */
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        //
+        $data = $request->all();
+        $brand->update($data);
+        return Redirect::route('brand.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Brand $brand)
+    public function destroy(Brand $brand, Request $request)
     {
-        //
+        $brand->delete();
+        return Redirect::route('brand.index');
+
     }
 }

@@ -5156,7 +5156,7 @@ building-user:
     - 6.1.0
     - 6.2.0
     - 6.3.0
-  label: Building User
+  label: Building UserController
   search:
     terms:
       - apartment
@@ -6746,7 +6746,7 @@ chalkboard-user:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: Chalkboard User
+  label: Chalkboard UserController
   search:
     terms:
       - blackboard
@@ -8369,7 +8369,7 @@ circle-user:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: Circle User
+  label: Circle UserController
   search:
     terms:
       - users-people
@@ -8572,7 +8572,7 @@ clipboard-user:
     - 6.2.0
     - 6.2.1
     - 6.3.0
-  label: Clipboard User
+  label: Clipboard UserController
   search:
     terms:
       - attendance
@@ -19279,7 +19279,7 @@ hospital-user:
     - 6.0.0-beta3
     - 6.2.0
     - 6.3.0
-  label: Hospital User
+  label: Hospital UserController
   search:
     terms:
       - covid-19
@@ -19648,7 +19648,7 @@ house-chimney-user:
     - 6.1.0
     - 6.2.0
     - 6.3.0
-  label: House Chimney User
+  label: House Chimney UserController
   search:
     terms:
       - covid-19
@@ -19999,7 +19999,7 @@ house-user:
     - 6.1.0
     - 6.2.0
     - 6.3.0
-  label: House User
+  label: House UserController
   search:
     terms:
       - house
@@ -37025,7 +37025,7 @@ user:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User
+  label: UserController
   search:
     terms:
       - adult
@@ -37052,7 +37052,7 @@ user-astronaut:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Astronaut
+  label: UserController Astronaut
   search:
     terms:
       - avatar
@@ -37075,7 +37075,7 @@ user-check:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Check
+  label: UserController Check
   search:
     terms:
       - users-people
@@ -37093,7 +37093,7 @@ user-clock:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Clock
+  label: UserController Clock
   search:
     terms:
       - users-people
@@ -37119,7 +37119,7 @@ user-doctor:
     - 6.1.2
     - 6.2.0
     - 6.3.0
-  label: User Doctor
+  label: UserController Doctor
   search:
     terms:
       - covid-19
@@ -37148,7 +37148,7 @@ user-gear:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Gear
+  label: UserController Gear
   search:
     terms:
       - users-people
@@ -37166,7 +37166,7 @@ user-graduate:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Graduate
+  label: UserController Graduate
   search:
     terms:
       - users-people
@@ -37188,7 +37188,7 @@ user-group:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Group
+  label: UserController Group
   search:
     terms:
       - bust
@@ -37209,7 +37209,7 @@ user-injured:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Injured
+  label: UserController Injured
   search:
     terms:
       - users-people
@@ -37231,7 +37231,7 @@ user-large:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Large
+  label: UserController Large
   search:
     terms:
       - users-people
@@ -37251,7 +37251,7 @@ user-large-slash:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Large Slash
+  label: UserController Large Slash
   search:
     terms:
       - users-people
@@ -37270,7 +37270,7 @@ user-lock:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Lock
+  label: UserController Lock
   search:
     terms:
       - users-people
@@ -37288,7 +37288,7 @@ user-minus:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Minus
+  label: UserController Minus
   search:
     terms:
       - delete
@@ -37310,7 +37310,7 @@ user-ninja:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Ninja
+  label: UserController Ninja
   search:
     terms:
       - assassin
@@ -37337,7 +37337,7 @@ user-nurse:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Nurse
+  label: UserController Nurse
   search:
     terms:
       - covid-19
@@ -37366,7 +37366,7 @@ user-pen:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Pen
+  label: UserController Pen
   search:
     terms:
       - users-people
@@ -37387,7 +37387,7 @@ user-plus:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Plus
+  label: UserController Plus
   search:
     terms:
       - add
@@ -37415,7 +37415,7 @@ user-secret:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Secret
+  label: UserController Secret
   search:
     terms:
       - detective
@@ -37436,7 +37436,7 @@ user-shield:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Shield
+  label: UserController Shield
   search:
     terms:
       - protect
@@ -37455,7 +37455,7 @@ user-slash:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Slash
+  label: UserController Slash
   search:
     terms:
       - ban
@@ -37475,7 +37475,7 @@ user-tag:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Tag
+  label: UserController Tag
   search:
     terms:
       - users-people
@@ -37494,7 +37494,7 @@ user-tie:
     - 6.0.0-beta2
     - 6.2.0
     - 6.3.0
-  label: User Tie
+  label: UserController Tie
   search:
     terms:
       - avatar
@@ -37522,7 +37522,7 @@ user-xmark:
     - 6.0.0-beta1
     - 6.2.0
     - 6.3.0
-  label: User Xmark
+  label: UserController Xmark
   search:
     terms:
       - archive

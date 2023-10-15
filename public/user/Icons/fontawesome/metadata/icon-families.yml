@@ -6416,7 +6416,7 @@ building-user:
     pro:
       - family: classic
         style: solid
-  label: Building User
+  label: Building UserController
   search:
     terms:
       - apartment
@@ -8369,7 +8369,7 @@ chalkboard-user:
     pro:
       - family: classic
         style: solid
-  label: Chalkboard User
+  label: Chalkboard UserController
   search:
     terms:
       - blackboard
@@ -10365,7 +10365,7 @@ circle-user:
         style: solid
       - family: classic
         style: regular
-  label: Circle User
+  label: Circle UserController
   search:
     terms:
       - users-people
@@ -10613,7 +10613,7 @@ clipboard-user:
     pro:
       - family: classic
         style: solid
-  label: Clipboard User
+  label: Clipboard UserController
   search:
     terms:
       - attendance
@@ -23985,7 +23985,7 @@ hospital-user:
     pro:
       - family: classic
         style: solid
-  label: Hospital User
+  label: Hospital UserController
   search:
     terms:
       - covid-19
@@ -24425,7 +24425,7 @@ house-chimney-user:
     pro:
       - family: classic
         style: solid
-  label: House Chimney User
+  label: House Chimney UserController
   search:
     terms:
       - covid-19
@@ -24871,7 +24871,7 @@ house-user:
     pro:
       - family: classic
         style: solid
-  label: House User
+  label: House UserController
   search:
     terms:
       - house
@@ -46091,7 +46091,7 @@ user:
         style: solid
       - family: classic
         style: regular
-  label: User
+  label: UserController
   search:
     terms:
       - adult
@@ -46122,7 +46122,7 @@ user-astronaut:
     pro:
       - family: classic
         style: solid
-  label: User Astronaut
+  label: UserController Astronaut
   search:
     terms:
       - avatar
@@ -46150,7 +46150,7 @@ user-check:
     pro:
       - family: classic
         style: solid
-  label: User Check
+  label: UserController Check
   search:
     terms:
       - users-people
@@ -46173,7 +46173,7 @@ user-clock:
     pro:
       - family: classic
         style: solid
-  label: User Clock
+  label: UserController Clock
   search:
     terms:
       - users-people
@@ -46204,7 +46204,7 @@ user-doctor:
     pro:
       - family: classic
         style: solid
-  label: User Doctor
+  label: UserController Doctor
   search:
     terms:
       - covid-19
@@ -46238,7 +46238,7 @@ user-gear:
     pro:
       - family: classic
         style: solid
-  label: User Gear
+  label: UserController Gear
   search:
     terms:
       - users-people
@@ -46261,7 +46261,7 @@ user-graduate:
     pro:
       - family: classic
         style: solid
-  label: User Graduate
+  label: UserController Graduate
   search:
     terms:
       - users-people
@@ -46288,7 +46288,7 @@ user-group:
     pro:
       - family: classic
         style: solid
-  label: User Group
+  label: UserController Group
   search:
     terms:
       - bust
@@ -46314,7 +46314,7 @@ user-injured:
     pro:
       - family: classic
         style: solid
-  label: User Injured
+  label: UserController Injured
   search:
     terms:
       - users-people
@@ -46341,7 +46341,7 @@ user-large:
     pro:
       - family: classic
         style: solid
-  label: User Large
+  label: UserController Large
   search:
     terms:
       - users-people
@@ -46366,7 +46366,7 @@ user-large-slash:
     pro:
       - family: classic
         style: solid
-  label: User Large Slash
+  label: UserController Large Slash
   search:
     terms:
       - users-people
@@ -46390,7 +46390,7 @@ user-lock:
     pro:
       - family: classic
         style: solid
-  label: User Lock
+  label: UserController Lock
   search:
     terms:
       - users-people
@@ -46413,7 +46413,7 @@ user-minus:
     pro:
       - family: classic
         style: solid
-  label: User Minus
+  label: UserController Minus
   search:
     terms:
       - delete
@@ -46440,7 +46440,7 @@ user-ninja:
     pro:
       - family: classic
         style: solid
-  label: User Ninja
+  label: UserController Ninja
   search:
     terms:
       - assassin
@@ -46472,7 +46472,7 @@ user-nurse:
     pro:
       - family: classic
         style: solid
-  label: User Nurse
+  label: UserController Nurse
   search:
     terms:
       - covid-19
@@ -46506,7 +46506,7 @@ user-pen:
     pro:
       - family: classic
         style: solid
-  label: User Pen
+  label: UserController Pen
   search:
     terms:
       - users-people
@@ -46532,7 +46532,7 @@ user-plus:
     pro:
       - family: classic
         style: solid
-  label: User Plus
+  label: UserController Plus
   search:
     terms:
       - add
@@ -46565,7 +46565,7 @@ user-secret:
     pro:
       - family: classic
         style: solid
-  label: User Secret
+  label: UserController Secret
   search:
     terms:
       - detective
@@ -46591,7 +46591,7 @@ user-shield:
     pro:
       - family: classic
         style: solid
-  label: User Shield
+  label: UserController Shield
   search:
     terms:
       - protect
@@ -46615,7 +46615,7 @@ user-slash:
     pro:
       - family: classic
         style: solid
-  label: User Slash
+  label: UserController Slash
   search:
     terms:
       - ban
@@ -46640,7 +46640,7 @@ user-tag:
     pro:
       - family: classic
         style: solid
-  label: User Tag
+  label: UserController Tag
   search:
     terms:
       - users-people
@@ -46664,7 +46664,7 @@ user-tie:
     pro:
       - family: classic
         style: solid
-  label: User Tie
+  label: UserController Tie
   search:
     terms:
       - avatar
@@ -46697,7 +46697,7 @@ user-xmark:
     pro:
       - family: classic
         style: solid
-  label: User Xmark
+  label: UserController Xmark
   search:
     terms:
       - archive

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class TypeController extends Controller
 {
@@ -13,7 +14,10 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $type = Type::all();
+        return view('type.index', [
+            'type' => $type
+        ]);
     }
 
     /**
@@ -21,7 +25,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('type.create');
     }
 
     /**
@@ -29,7 +33,9 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $data = $request->all();
+        Type::create($data);
+        return Redirect::route('type.index');
     }
 
     /**
@@ -45,7 +51,9 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('type.edit', [
+            'type' => $type
+        ]);
     }
 
     /**
@@ -53,7 +61,9 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $data = $request->all();
+        $type->update($data);
+        return Redirect::route('type.index');
     }
 
     /**
@@ -61,6 +71,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return Redirect::route('type.index');
     }
 }

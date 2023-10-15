@@ -1,30 +1,35 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <table border="1px" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-        </tr>
-        @foreach($brand as $item)
-            <tr>
-                <td>
-                    {{ $item->brand_code }}
-                </td>
-                <td>
-                    {{ $item->brand_name }}
-
-                </td>
-
-            </tr>
-        @endforeach
-    </table>
-</body>
-</html>
+@extends('brand.master')
+@section('content')
+    <a href="{{ route('brand.create') }}" class="btn btn-danger">Add Brand</a>
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Brand Table</h6>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($brand as $bran)
+                        <tr>
+                            <td>{{ $bran->brand_id}}</td>
+                            <td>{{ $bran->Brand_name }}</td>
+                            <td><a href=" {{ route('brand.edit',  $bran->brand_id)}}" class="btn btn-info">Edit</a></td>
+                            <td>
+                                <form method="post" action="{{ route('brand.destroy', $bran->brand_id)}}">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button class="btn btn-warning">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+@endsection

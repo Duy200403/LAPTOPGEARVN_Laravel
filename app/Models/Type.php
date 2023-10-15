@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    protected $fillable = ['Type_name'];
+
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
 }
