@@ -7,9 +7,10 @@
         href="https://myshoes.vn/image/catalog/logo/logo-myshoes-nho.png"
         rel="icon"
     />
-    <title>Myshoes.vn - Giày Chính Hãng</title>
+    <title>LapTop</title>
     {{--    <link rel="stylesheet" href="/Public/Icons/fontawesome/css/all.min.css" />--}}
     <link rel="stylesheet" href=" {{asset('user/Icons/fontawesome/css/all.min.css')}} ">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -44,270 +45,186 @@
                         />
                     </a>
                 </div>
-                <form class="search-wrapper" action method="POST">
+                <form class="search-wrapper" action="{{ route('search') }}" method="POST">
+                    @csrf
                     <input type="text" name="by" placeholder="Tìm kiếm sản phẩm..." />
                     <button type="submit" class="search-btn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class='bx bx-search-alt'></i>
                     </button>
                 </form>
                 <div class="classic-wrapper">
-                    <div class="accounts">
-                        <a href="?controller=login&action=login" class="accounts-link">
-                            <i class="fa-solid fa-user"></i>
-                            <div class="links-text">
-                                <span>Tài khoản</span>
-                                <span>Đăng nhập/ Đăng ký</span>
+                    @if(Auth::guard('customers')->check())
+                        <div class="accounts">
+                            <a href="?controller=login&action=login" class="accounts-link">
+                                <i class='bx bxs-user'></i>
+                                <div class="links-text">
+                                    <span>Tài khoản</span>
+                                    <span>{{ Auth::guard('customers')->user()->name }}</span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu-accounts">
+                                <span class="login"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                <a href="{{ route('user.login.logout') }}">Logout</a></span>
                             </div>
-                        </a>
-                        <div class="dropdown-menu-accounts">
-                  <span class="login"
-                  ><i class="fa-solid fa-arrow-right-to-bracket"></i>Đăng
-                    nhập</span
-                  >
-                            <span class="logout"
-                            ><i
-                                    class="fa-sharp fa-solid fa-arrow-right-from-bracket"
-                                ></i
-                                >Đăng ký</span
-                            >
                         </div>
-                        <!-- <a href='?controller=login&action=login' class='accounts-link'>
-                                                <i class='fa-solid fa-user'></i>
-                                                <div class='links-text'>
-                                                    <span>Tài khoản</span>
-                                                    <span>Chỉnh sửa / Thoát</span>
-                                                </div>
-                                            </a>
-                                            <div class='dropdown-menu-accounts logined'>
-                                                <span class='login'><i class='fa-solid fa-user'></i>Tài khoản của tôi</span>
-                                                <span class='logout'><a href='?controller=admin'>&diams; Trang quản trị</a></span>
-                                                <span class='logout'><i class='fa-solid fa-cart-shopping'></i>Đơn hàng của tôi</span>
-                                                <span class='exit'><i class='fa-solid fa-arrow-right-to-bracket'></i><a href='?controller=login&action=logout'>Thoát</a></span>
-                                            </div> -->
-                    </div>
+                    @else
+                        <div class="accounts">
+                            <a href="?controller=login&action=login" class="accounts-link">
+                                <i class='bx bxs-user'></i>
+                                <div class="links-text">
+                                    <span>Tài khoản</span>
+                                    <span>Đăng nhập/ Đăng ký</span>
+                                </div>
+                            </a>
+                        </div>
+                    @endif
                     <div class="cart">
-                        <a href="?redirect=cart" class="cart-link hvr-icon-grow">
-                            <i class="fa fa-shopping-cart"></i>
+                        <a href="{{ route('home.showCart') }}" class="cart-link hvr-icon-grow">
+                            <i class='bx bx-cart-alt'></i>
                         </a>
                         <span class="quantity">!</span>
                         <div class="cart-empty">
-                            <span>Không có sản phẩm trong giỏ hàng!</span>
+                            <span>Giỏ Hàng</span>
                         </div>
+                    </div>
 
-                        <!-- <div class="cart-products">
-                                        <div class="list-products-cart">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="cart-totals">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td scope="row" style="width: 70%;">Thành tiền</td>
-                                                        <td>11.150.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td scope="row" style="width: 70%;">Tổng cộng</td>
-                                                        <td>11.150.000₫</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="cart-buttons">
-                                                <button type="button" class="btn btn-light"><a>XEM GIỎ HÀNG</a></button>
-                                                <button type="button" class="btn btn-danger"><a>THANH TOÁN</a></button>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                    <div class="cart">
+                        <a href="{{ route('user.cartHistory.history') }}" class="cart-link hvr-icon-grow">
+                            <i class='bx bx-cart-download' ></i>
+                        </a>
+                        <div class="cart-empty">
+                            <span>Lịch Sử</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="menu-wrapper">
-                <div class="menu-default">
-                    <ul class="main-menu">
-                        <a href="{{ route('user.home.index')}}" class="item-link">
-                            <span class="item-name">HOME</span>
-                        </a>
-                        @foreach ($type as $laptop)
-                            @if ($laptop->id == 1)
-                                <li class="menu-item hvr-float-shadow position-relative">
-                                    <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
-                                        <span class="item-name">{{ $laptop->Type_name }}</span>
-                                    </a>
-                                    <div class="sub-menu z-3 position-absolute w-100 text-center">
-                                        @php
-                                            $displayedCateIds = []; // Danh sách các cate_id đã được hiển thị
-                                        @endphp
-                                        @foreach ($product as $item)
-                                            @if ($item->id == 1 && !in_array($item->cate_id, $displayedCateIds))
-                                                <ul class="list-group">
-                                                    <a href="{{ route('user.category.cat', ['id' => $item->cate_id]) }}">
-                                                        <li class="list-group-item p-2">{{ $item->Category_name }}</li>
-                                                    </a>
-                                                </ul>
-                                                @php
-                                                    $displayedCateIds[] = $item->cate_id; // Đánh dấu rằng cate_id đã được hiển thị
-                                                @endphp
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </li>
-
-                            @endif
-                            @if ($laptop->id == 2)
-                                <li class="menu-item hvr-float-shadow position-relative">
-                                    <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
-                                        <span class="item-name">{{ $laptop->Type_name }}</span>
-                                    </a>
-                                    <div class="sub-menu z-3 position-absolute w-100 text-center">
-                                        @php
-                                            $displayedCateIds = []; // Danh sách các cate_id đã được hiển thị
-                                        @endphp
-                                        @foreach ($product as $item)
-                                            @if ($item->id == 2 && !in_array($item->cate_id, $displayedCateIds))
-                                                <ul class="list-group">
-                                                    <a href="{{ route('user.category.cat', ['id' => $item->cate_id]) }}">
-                                                        <li class="list-group-item p-2">{{ $item->Category_name }}</li>
-                                                    </a>
-                                                </ul>
-                                                @php
-                                                    $displayedCateIds[] = $item->cate_id; // Đánh dấu rằng cate_id đã được hiển thị
-                                                @endphp
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </li>
-                            @endif
-                            @if ($laptop->id == 3)
-                                <li class="menu-item hvr-float-shadow position-relative">
-                                    <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
-                                        <span class="item-name">{{ $laptop->Type_name }}</span>
-                                    </a>
-                                    <div class="sub-menu z-3 position-absolute w-100 text-center">
-                                        @php
-                                            $displayedCateIds = []; // Danh sách các cate_id đã được hiển thị
-                                        @endphp
-                                        @foreach ($product as $item)
-                                            @if ($item->id == 3 && !in_array($item->cate_id, $displayedCateIds))
-                                                <ul class="list-group">
-                                                    <a href="{{ route('user.category.cat', ['id' => $item->cate_id]) }}">
-                                                        <li class="list-group-item p-2">{{ $item->Category_name }}</li>
-                                                    </a>
-                                                </ul>
-                                                @php
-                                                    $displayedCateIds[] = $item->cate_id; // Đánh dấu rằng cate_id đã được hiển thị
-                                                @endphp
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </li>
-                            @endif
-
-                            @if ($laptop->id == 5)
-                                <li class="menu-item hvr-float-shadow position-relative">
-                                    <a href class="item-link">
-                                        <span class="item-name">{{ $laptop->Type_name }}</span>
-                                    </a>
-                                    <div class="sub-menu z-3 position-absolute w-100 text-center">
-                                        @foreach ($product as $item)
-                                            @if ($item->id == 5)
-                                                <ul class="list-group">
+        </div>
+        <div class="menu-wrapper">
+            <div class="menu-default">
+                <ul class="main-menu">
+                    <a href="{{ route('user.home.index')}}" class="item-link">
+                        <i class='bx bxs-home-heart'></i>
+                        <span class="item-name">HOME</span>
+                    </a>
+                    @foreach ($type as $laptop)
+                        @if ($laptop->id == 1)
+                            <li class="menu-item hvr-float-shadow position-relative">
+                                <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
+                                    <i class='bx bx-laptop'></i>
+                                    <span class="item-name">{{ $laptop->Type_name }}</span>
+                                </a>
+                                <div class="sub-menu z-3 position-absolute w-100 text-center">
+                                    @php
+                                        $displayedCateIds = []; // Danh sách các cate_id đã được hiển thị
+                                    @endphp
+                                    @foreach ($product as $item)
+                                        @if ($item->id == 1 && !in_array($item->cate_id, $displayedCateIds))
+                                            <ul class="list-group">
+                                                <a href="{{ route('user.category.cat', ['id' => $item->cate_id]) }}">
                                                     <li class="list-group-item p-2">{{ $item->Category_name }}</li>
-                                                </ul>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </li>
-                            @endif
+                                                </a>
+                                            </ul>
+                                            @php
+                                                $displayedCateIds[] = $item->cate_id; // Đánh dấu rằng cate_id đã được hiển thị
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </li>
 
-                            @if ($laptop->id == 4)
-                                <li class="menu-item hvr-float-shadow position-relative">
-                                    <a href class="item-link">
-                                        <span class="item-name">{{ $laptop->Type_name }}</span>
-                                    </a>
-                                    <div class="sub-menu z-3 position-absolute w-100 text-center">
-                                        @foreach ($product as $item)
-                                            @if ($item->id == 4)
-                                                <ul class="list-group">
+                        @endif
+                        @if ($laptop->id == 2)
+                            <li class="menu-item hvr-float-shadow position-relative">
+                                <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
+                                    <i class='bx bx-headphone'></i>
+                                    <span class="item-name">{{ $laptop->Type_name }}</span>
+                                </a>
+                                <div class="sub-menu z-3 position-absolute w-100 text-center">
+                                    @php
+                                        $displayedCateIds = []; // Danh sách các cate_id đã được hiển thị
+                                    @endphp
+                                    @foreach ($product as $item)
+                                        @if ($item->id == 2 && !in_array($item->cate_id, $displayedCateIds))
+                                            <ul class="list-group">
+                                                <a href="{{ route('user.category.cat', ['id' => $item->cate_id]) }}">
                                                     <li class="list-group-item p-2">{{ $item->Category_name }}</li>
-                                                </ul>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </li>
-                            @endif
-                        @endforeach
+                                                </a>
+                                            </ul>
+                                            @php
+                                                $displayedCateIds[] = $item->cate_id; // Đánh dấu rằng cate_id đã được hiển thị
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </li>
+                        @endif
+                        @if ($laptop->id == 3)
+                            <li class="menu-item hvr-float-shadow position-relative">
+                                <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
+                                    <i class='bx bx-desktop'></i>
+                                    <span class="item-name">{{ $laptop->Type_name }}</span>
+                                </a>
+                                <div class="sub-menu z-3 position-absolute w-100 text-center">
+                                    @php
+                                        $displayedCateIds = []; // Danh sách các cate_id đã được hiển thị
+                                    @endphp
+                                    @foreach ($product as $item)
+                                        @if ($item->id == 3 && !in_array($item->cate_id, $displayedCateIds))
+                                            <ul class="list-group">
+                                                <a href="{{ route('user.category.cat', ['id' => $item->cate_id]) }}">
+                                                    <li class="list-group-item p-2">{{ $item->Category_name }}</li>
+                                                </a>
+                                            </ul>
+                                            @php
+                                                $displayedCateIds[] = $item->cate_id; // Đánh dấu rằng cate_id đã được hiển thị
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </li>
+                        @endif
 
-                    </ul>
-                </div>
+                        @if ($laptop->id == 5)
+                            <li class="menu-item hvr-float-shadow position-relative">
+                                <a href="" class="item-link">
+                                    <i class='bx bx-memory-card'></i>
+                                    <span class="item-name">{{ $laptop->Type_name }}</span>
+                                </a>
+                                <div class="sub-menu z-3 position-absolute w-100 text-center">
+
+                                    @foreach ($product as $item)
+                                        @if ($item->id == 5)
+                                            <ul class="list-group">
+                                                <li class="list-group-item p-2">{{ $item->Category_name }}</li>
+                                            </ul>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </li>
+                        @endif
+
+                        @if ($laptop->id == 4)
+                            <li class="menu-item hvr-float-shadow position-relative">
+                                <a href class="item-link">
+                                    <i class='bx bx-dollar'></i>
+                                    <span class="item-name">{{ $laptop->Type_name }}</span>
+                                </a>
+                                <div class="sub-menu z-3 position-absolute w-100 text-center">
+                                    @foreach ($product as $item)
+                                        @if ($item->id == 4)
+                                            <ul class="list-group">
+                                                <li class="list-group-item p-2">{{ $item->Category_name }}</li>
+                                            </ul>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </li>
+                        @endif
+                    @endforeach
+
+                </ul>
             </div>
+        </div>
         </div>
     </header>
     <div class="body">
@@ -356,10 +273,11 @@
                             </div>
                             <form class="product-options">
                                 <div class="button-group-page">
-                                    <a href="{{ route('user.cart.cart', ['id' => $products->id]) }}" class="button-cart hvr-sweep-to-right">
+                                    <a href="{{ route('user.cart.cart', ['id' => $products->id]) }}" class="button-cart hvr-sweep-to-right center-text">
                                         THÊM VÀO GIỎ
+                                    </a>
                                     <br>
-                                    <a href="{{ route('user.cart.cart', ['id' => $products->id]) }}" class="button-buy hvr-sweep-to-left">
+                                    <a href="{{ route('user.cart.cart', ['id' => $products->id]) }}" class="button-buy hvr-sweep-to-left center-text">
                                         MUA HÀNG NGAY
                                     </a>
                                 </div>
@@ -393,76 +311,43 @@
                                         <li class="tab-item tab--active">
                                             <span>MÔ TẢ SẢN PHẨM</span>
                                         </li>
-                                        <li class="tab-item"><span>ĐÁNH GIÁ</span></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="tab-pane show">
                                     <p>
-                                        một mẫu giày thể thao đa dụng, thiết kế gọn gàng mang
-                                        lại cảm giác cực kỳ tự nhiên khi sử dụng. Trọng lượng
-                                        siêu nhẹ, chất liệu êm ái giúp bạn di chuyển cả ngày mà
-                                        không mệt mỏi.
+                                        XGEAR là một trang web hàng đầu cung cấp các sản phẩm liên quan đến laptop, bao gồm cả linh kiện và phụ kiện. Với cam kết cung cấp sản phẩm và dịch vụ chất lượng hàng đầu, XGEAR đã khẳng định vị thế của mình là một tên tuổi đáng tin cậy trong lĩnh vực công nghệ và máy tính.
+                                        <br>
+                                        Phục vụ đa dạng khách hàng từ những người đam mê công nghệ đến các chuyên gia, XGEAR tự hào với bộ sưu tập đa dạng gồm laptop chất lượng cao, các linh kiện tiên tiến và một loạt phụ kiện đa dạng. Cho dù bạn đang tìm kiếm những mẫu laptop mới nhất từ các thương hiệu nổi tiếng hay muốn nâng cấp hệ thống hiện tại với các sản phẩm bổ sung cao cấp, XGEAR cung cấp một lựa chọn đa dạng để đáp ứng nhu cầu và sở thích khác nhau.
                                     </p>
                                     <h4>
-                                        tại Myshoes.vn được nhập khẩu chính hãng. Full box, đầy
+                                        tại XGEAR được nhập khẩu chính hãng. Full box, đầy
                                         đủ phụ kiện.
                                     </h4>
                                     <div class="detail-img">
-                                        <img src=" ">
-                                        <img src alt />
-                                        <img src alt />
-                                        <img src alt />
-                                        <img src alt />
+                                        </div>
+                                        <p>{{ $products->Version_details }}</p>
                                     </div>
-                                    <p style="color: red">* Myshoes.vn cam kết:</p>
-                                    <p>
-                                        - chính hãng 100%. Phát hiện hàng Fake đền tiền gấp 2
-                                        lần giá sản phẩm.
-                                    </p>
-                                    <p>
-                                        - Myshoes.vn miễn phí giao hàng toàn quốc (với đơn hàng
-                                        từ 500.000 vnđ).
-                                    </p>
-                                    <p>- Đổi hàng trong 30 ngày đơn giản dễ dàng</p>
-                                    <p style="color: red">* Cách thức mua hàng:</p>
-                                    <p>
-                                        - Khách hàng tiến hành MUA HÀNG trực tiếp trên website
-                                        hoặc gọi điện tới Hotline: 0973 711 868 để được tư vấn.
-                                    </p>
-                                    <p>
-                                        - Khách hàng sẽ nhận được sản phẩm sau 1 - 3 ngày kể từ
-                                        khi đặt hàng.
-                                    </p>
-                                    <p style="color: red">* Thông tin liên hệ Myshoes.vn:</p>
-                                    <p>+ Showroom: 249 Xã Đàn, Hà Nội.</p>
-                                    <p>
-                                        + Điện thoại: 0903 479 488 / Hotline: 0973 711 868
-                                        (Zalo, Viber)
-                                    </p>
-                                    <p>+ Email: cskh@myshoes.vn</p>
-                                    <p>+ Website: https://myshoes.vn</p>
-                                </div>
-                                <div class="tab-pane">
-                                    <div class="text-alert">
-                                        Không có đánh giá cho sản phẩm này
-                                    </div>
-                                    <div class="mb-3">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="exampleFormControlInput1"
-                                            placeholder="Tên bạn"
-                                        />
-                                    </div>
-                                    <div class="mb-3">
-                        <textarea
-                            class="form-control"
-                            id="exampleFormControlTextarea1"
-                            rows="3"
-                            placeholder="Đánh giá của bạn"
-                        ></textarea>
+                                    <div class="tab-pane">
+                                        <div class="text-alert">
+                                            Không có đánh giá cho sản phẩm này
+                                        </div>
+                                        <div class="mb-3">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="exampleFormControlInput1"
+                                                placeholder="Tên bạn"
+                                            />
+                                        </div>
+                                        <div class="mb-3">
+                            <textarea
+                                class="form-control"
+                                id="exampleFormControlTextarea1"
+                                rows="3"
+                                placeholder="Đánh giá của bạn"
+                            ></textarea>
                                     </div>
                                     <div class="text-note">
                                         Lưu ý: <span> Không hỗ trợ HTML!</span>

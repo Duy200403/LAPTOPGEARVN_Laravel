@@ -7,7 +7,9 @@
         href="https://myshoes.vn/image/catalog/logo/logo-myshoes-nho.png"
         rel="icon"
     />
-    <title>Myshoes.vn - Giày Chính Hãng</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <title>LapTop</title>
     {{--    <link rel="stylesheet" href="/Public/Icons/fontawesome/css/all.min.css" />--}}
     <link rel="stylesheet" href=" {{asset('user/Icons/fontawesome/css/all.min.css')}} ">
     <link
@@ -43,148 +45,70 @@
                         />
                     </a>
                 </div>
-                <form class="search-wrapper" action method="POST">
+                <form class="search-wrapper" action="{{ route('search') }}" method="POST">
+                    @csrf
                     <input type="text" name="by" placeholder="Tìm kiếm sản phẩm..." />
                     <button type="submit" class="search-btn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class='bx bx-search-alt'></i>
                     </button>
                 </form>
                 <div class="classic-wrapper">
-                    <div class="accounts">
-                        <a href="?controller=login&action=login" class="accounts-link">
-                            <i class="fa-solid fa-user"></i>
-                            <div class="links-text">
-                                <span>Tài khoản</span>
-                                <span>Đăng nhập/ Đăng ký</span>
+                    @if(Auth::guard('customers')->check())
+                        <div class="accounts">
+                            <a href="?controller=login&action=login" class="accounts-link">
+                                <i class='bx bxs-user'></i>
+                                <div class="links-text">
+                                    <span>Tài khoản</span>
+                                    <span>{{ Auth::guard('customers')->user()->name }}</span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu-accounts">
+                                <span class="login"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                <a href="{{ route('user.login.logout') }}">Logout</a></span>
                             </div>
-                        </a>
-                        <div class="dropdown-menu-accounts">
-                  <span class="login"
-                  ><i class="fa-solid fa-arrow-right-to-bracket"></i>Đăng
-                    nhập</span
-                  >
-                            <span class="logout"
-                            ><i
-                                    class="fa-sharp fa-solid fa-arrow-right-from-bracket"
-                                ></i
-                                >Đăng ký</span
-                            >
                         </div>
-                    </div>
-                    <div class="cart">
-                        <a href="?redirect=cart" class="cart-link hvr-icon-grow">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                        <span class="quantity">!</span>
-                        <div class="cart-empty">
-                            <span>Không có sản phẩm trong giỏ hàng!</span>
+                    @else
+                        <div class="accounts">
+                            <a href="?controller=login&action=login" class="accounts-link">
+                                <i class='bx bxs-user'></i>
+                                <div class="links-text">
+                                    <span>Tài khoản</span>
+                                    <span>Đăng nhập/ Đăng ký</span>
+                                </div>
+                            </a>
                         </div>
-
-                        <!-- <div class="cart-products">
-                                        <div class="list-products-cart">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="td-img" scope="row">
-                                                            <img src="https://myshoes.vn/image/cache/catalog/2023/lacoste/112/giay-lacoste-powercourt-1121-nam-den-01-60x60.jpg" alt="">
-                                                        </td>
-                                                        <td class="td-name hvr-grow">
-                                                            <a>Giày Lacoste PowerCourt 1121 Nam - Đen</a>
-                                                            <p>Chọn size nam: 39.5</p>
-                                                        </td>
-                                                        <td class="td-quantity">x1</td>
-                                                        <td class="td-total">2.690.000₫</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="cart-totals">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td scope="row" style="width: 70%;">Thành tiền</td>
-                                                        <td>11.150.000₫</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td scope="row" style="width: 70%;">Tổng cộng</td>
-                                                        <td>11.150.000₫</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="cart-buttons">
-                                                <button type="button" class="btn btn-light"><a>XEM GIỎ HÀNG</a></button>
-                                                <button type="button" class="btn btn-danger"><a>THANH TOÁN</a></button>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                    </div>
+                    @endif
+                        <div class="cart">
+                            <a href="{{ route('home.showCart') }}" class="cart-link hvr-icon-grow">
+                                <i class='bx bx-cart-alt'></i>
+                            </a>
+                            <span class="quantity">!</span>
+                            <div class="cart-empty">
+                                <span>Giỏ Hàng</span>
+                            </div>
+                        </div>
+                        <div class="cart">
+                            <a href="{{ route('user.cartHistory.history') }}" class="cart-link hvr-icon-grow">
+                                <i class='bx bx-cart-download' ></i>
+                            </a>
+                            <div class="cart-empty">
+                                <span>Lịch Sử</span>
+                            </div>
+                        </div>
                 </div>
             </div>
             <div class="menu-wrapper">
                 <div class="menu-default">
                     <ul class="main-menu">
                         <a href="{{ route('user.home.index')}}" class="item-link">
+                            <i class='bx bxs-home-heart'></i>
                             <span class="item-name">HOME</span>
                         </a>
                         @foreach ($type as $laptop)
                             @if ($laptop->id == 1)
                                 <li class="menu-item hvr-float-shadow position-relative">
                                     <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
+                                        <i class='bx bx-laptop'></i>
                                         <span class="item-name">{{ $laptop->Type_name }}</span>
                                     </a>
                                     <div class="sub-menu z-3 position-absolute w-100 text-center">
@@ -210,6 +134,7 @@
                             @if ($laptop->id == 2)
                                 <li class="menu-item hvr-float-shadow position-relative">
                                     <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
+                                        <i class='bx bx-headphone'></i>
                                         <span class="item-name">{{ $laptop->Type_name }}</span>
                                     </a>
                                     <div class="sub-menu z-3 position-absolute w-100 text-center">
@@ -234,6 +159,7 @@
                             @if ($laptop->id == 3)
                                 <li class="menu-item hvr-float-shadow position-relative">
                                     <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
+                                        <i class='bx bx-desktop'></i>
                                         <span class="item-name">{{ $laptop->Type_name }}</span>
                                     </a>
                                     <div class="sub-menu z-3 position-absolute w-100 text-center">
@@ -258,10 +184,12 @@
 
                             @if ($laptop->id == 5)
                                 <li class="menu-item hvr-float-shadow position-relative">
-                                    <a href class="item-link">
+                                    <a href="" class="item-link">
+                                        <i class='bx bx-memory-card'></i>
                                         <span class="item-name">{{ $laptop->Type_name }}</span>
                                     </a>
                                     <div class="sub-menu z-3 position-absolute w-100 text-center">
+
                                         @foreach ($product as $item)
                                             @if ($item->id == 5)
                                                 <ul class="list-group">
@@ -276,6 +204,7 @@
                             @if ($laptop->id == 4)
                                 <li class="menu-item hvr-float-shadow position-relative">
                                     <a href class="item-link">
+                                        <i class='bx bx-dollar'></i>
                                         <span class="item-name">{{ $laptop->Type_name }}</span>
                                     </a>
                                     <div class="sub-menu z-3 position-absolute w-100 text-center">
@@ -302,13 +231,12 @@
 
             <div class="col-md-12">
                 <div class="content">
-                    <h1 class="page-title">Giày Chính Hãng</h1>
                     <div class="category-desc">
                         <img
-                            src="https://myshoes.vn/image/cache/catalog/2022/banner/cata/giay-nike-chinh-hang-1140x500.png"
-                            alt="Giày Adidas Chính Hãng"
-                            title="Giày Adidas Chính Hãng"
-                            class="category-image"
+                            src="https://cdn.tgdd.vn/2023/08/banner/Lenovo-1200-300-1200x300.png"
+                            alt=""
+                            title=""
+                            class=""
                         />
                     </div>
                     <div class="content-top">

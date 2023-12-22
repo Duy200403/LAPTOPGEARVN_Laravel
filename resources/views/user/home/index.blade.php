@@ -44,10 +44,11 @@
                         />
                     </a>
                 </div>
-                <form class="search-wrapper" action method="POST">
+                <form class="search-wrapper" action="{{ route('search') }}" method="POST">
+                    @csrf
                     <input type="text" name="by" placeholder="Tìm kiếm sản phẩm..." />
                     <button type="submit" class="search-btn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class='bx bx-search-alt'></i>
                     </button>
                 </form>
                 <div class="classic-wrapper">
@@ -67,7 +68,7 @@
                         </div>
                     @else
                         <div class="accounts">
-                            <a href="?controller=login&action=login" class="accounts-link">
+                            <a href="{{ route('user.login.login') }}" class="accounts-link">
                                 <i class='bx bxs-user'></i>
                                 <div class="links-text">
                                     <span>Tài khoản</span>
@@ -85,6 +86,7 @@
                             <span>Giỏ Hàng</span>
                         </div>
                     </div>
+
                     <div class="cart">
                         <a href="{{ route('user.cartHistory.history') }}" class="cart-link hvr-icon-grow">
                             <i class='bx bx-cart-download' ></i>
@@ -99,12 +101,14 @@
                 <div class="menu-default">
                     <ul class="main-menu">
                         <a href="{{ route('user.home.index')}}" class="item-link">
+                            <i class='bx bxs-home-heart'></i>
                             <span class="item-name">HOME</span>
                         </a>
                         @foreach ($type as $laptop)
                         @if ($laptop->id == 1)
                         <li class="menu-item hvr-float-shadow position-relative">
                             <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
+                                <i class='bx bx-laptop'></i>
                                 <span class="item-name">{{ $laptop->Type_name }}</span>
                             </a>
                             <div class="sub-menu z-3 position-absolute w-100 text-center">
@@ -130,6 +134,7 @@
                         @if ($laptop->id == 2)
                             <li class="menu-item hvr-float-shadow position-relative">
                                 <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
+                                    <i class='bx bx-headphone'></i>
                                     <span class="item-name">{{ $laptop->Type_name }}</span>
                                 </a>
                                 <div class="sub-menu z-3 position-absolute w-100 text-center">
@@ -154,6 +159,7 @@
                         @if ($laptop->id == 3)
                             <li class="menu-item hvr-float-shadow position-relative">
                                 <a href="{{ route('user.type.tp', ['id' => $laptop->id]) }}" class="item-link">
+                                    <i class='bx bx-desktop'></i>
                                     <span class="item-name">{{ $laptop->Type_name }}</span>
                                 </a>
                                 <div class="sub-menu z-3 position-absolute w-100 text-center">
@@ -179,6 +185,7 @@
                         @if ($laptop->id == 5)
                             <li class="menu-item hvr-float-shadow position-relative">
                                 <a href="" class="item-link">
+                                    <i class='bx bx-memory-card'></i>
                                     <span class="item-name">{{ $laptop->Type_name }}</span>
                                 </a>
                                 <div class="sub-menu z-3 position-absolute w-100 text-center">
@@ -197,6 +204,7 @@
                         @if ($laptop->id == 4)
                             <li class="menu-item hvr-float-shadow position-relative">
                                 <a href class="item-link">
+                                    <i class='bx bx-dollar'></i>
                                     <span class="item-name">{{ $laptop->Type_name }}</span>
                                 </a>
                                 <div class="sub-menu z-3 position-absolute w-100 text-center">
@@ -278,24 +286,25 @@
                                         <img src="//cdn.tgdd.vn/Brand/1/logo-hp-149x40-1.png" height="25" class="no-text">
 
                                     </a>
-                                    <a href="{{ route('user.brand.br', ['id' => 4]) }}" data-href="laptop-dell" data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
-                                        <img src="//cdn.tgdd.vn/Brand/1/logo-dell-149x40.png" height="25" class="no-text">
-
-                                    </a>
-                                    <a href="laptop-apple-macbook" data-href="laptop-apple-macbook" data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
+                                    <a href="{{ route('user.brand.br', ['id' => 5]) }}" data-href="laptop-apple-macbook" data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
                                         <img src="//cdn.tgdd.vn/Brand/1/logo-macbook-149x40.png" height="25" class="no-text">
 
                                     </a>
-                                    <a href="laptop-lenovo" data-href="laptop-lenovo" data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
-                                        <img src="//cdn.tgdd.vn/Brand/1/logo-lenovo-149x40.png" height="25" class="no-text">
+                                    <a href="{{ route('user.brand.br', ['id' => 9]) }}" data-href="laptop-gigabyte" data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
+                                        <img src="//cdn.tgdd.vn/Brand/1/logo-gigabyte-149x40.png" height="25" class="no-text">
 
                                     </a>
-                                    <a href="laptop-msi" data-href="laptop-msi" data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
+                                    <a href="{{ route('user.brand.br', ['id' => 7]) }}" data-href="laptop-msi" data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
                                         <img src="//cdn.tgdd.vn/Brand/1/logo-msi-149x40.png" height="25" class="no-text">
 
                                     </a>
-                                    <a href="laptop-itel" data-href="laptop-itel" data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
-                                        <img src="//cdn.tgdd.vn/Brand/1/logo-itel-149x40.png" height="25" class="no-text">
+                                    <a href="{{ route('user.brand.br', ['id' => 11]) }}" data-href="laptop-lenovo" data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
+                                        <img src="https://robots.net/wp-content/uploads/2023/08/what-is-the-logitech-logo-1691401854.jpg" height="32" class="no-text">
+
+                                    </a>
+
+                                    <a href="{{ route('user.brand.br', ['id' => 10]) }}" data-href="laptop-itel" data-index="0" class="box-quicklink__item bd-radius quicklink-logo">
+                                        <img src="data:image/png;base64,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" height="25" class="no-text">
 
                                     </a>
                                 </div>
@@ -304,14 +313,16 @@
                     @endforeach
                     <div class="main-products-wrapper">
                         <div class="title-wrapper">
-                            <h3 class="mb-3">SẢN PHẨM MỚI</h3>
+                            <h3 class="mb-3">LAPTOP MỚI</h3>
                             <div class="title-divider"></div>
                             <div class="subtitle">#NEW</div>
                         </div>
 
                         <div class="main-products">
                             <div class="row g-0">
-                                @foreach ($version as $products)
+
+                                @foreach ($version->sortByDesc('id') as $products)
+                                    @if($products->type_id === 1)
                                     <div class="col-2-4">
                                         <div href="" class="product-layout">
                                             <a href="{{ route('user.productDetail.detail', ['id' => $products->id]) }}" class="product-image">
@@ -341,6 +352,97 @@
                                             <div class="product-layout--hover"></div>
                                         </div>
                                     </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-products-wrapper">
+                        <div class="title-wrapper">
+                            <h3 class="mb-3">COMPUTER COMPONENTS MỚI</h3>
+                            <div class="title-divider"></div>
+                            <div class="subtitle">#NEW</div>
+                        </div>
+
+                        <div class="main-products">
+                            <div class="row g-0">
+                                @foreach ($version->sortByDesc('id') as $products)
+                                    @if($products->type_id === 2)
+                                    <div class="col-2-4">
+                                        <div href="" class="product-layout">
+                                            <a href="{{ route('user.productDetail.detail', ['id' => $products->id]) }}" class="product-image">
+                                                <img
+                                                    src="{{ asset(Storage::url('public/admin/'. $products->image)) }}"
+                                                    width="100%"
+                                                    height="238.387"
+                                                    alt=""
+                                                    title=""
+                                                />
+                                            </a>
+                                            <div class="product-caption">
+                                                <div class="brand">
+                                                    <a href="#" class="brand-title">{{ $products->Brand_name }}</a>
+                                                </div>
+                                                <div class="name">
+                                                    <a href="#">{{ $products->Version_name }}</a>
+                                                </div>
+                                                <div class="price">
+                                                    <span class="price-new">{{ number_format($products->price, 0, ',', '.') }}₫</span>
+                                                </div>
+                                            </div>
+                                            <div class="tag">
+                                                <span class="tag-new">#NEW</span>
+                                                <span class="tag-discount"></span>
+                                            </div>
+                                            <div class="product-layout--hover"></div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-products-wrapper">
+                        <div class="title-wrapper">
+                            <h3 class="mb-3">COMPUTER ACCESSORY MỚI</h3>
+                            <div class="title-divider"></div>
+                            <div class="subtitle">#NEW</div>
+                        </div>
+
+                        <div class="main-products">
+                            <div class="row g-0">
+                                @foreach ($version->sortByDesc('id') as $products)
+                                    @if($products->type_id === 3)
+                                    <div class="col-2-4">
+                                        <div href="" class="product-layout">
+                                            <a href="{{ route('user.productDetail.detail', ['id' => $products->id]) }}" class="product-image">
+                                                <img
+                                                    src="{{ asset(Storage::url('public/admin/'. $products->image)) }}"
+                                                    width="100%"
+                                                    height="238.387"
+                                                    alt=""
+                                                    title=""
+                                                />
+                                            </a>
+                                            <div class="product-caption">
+                                                <div class="brand">
+                                                    <a href="#" class="brand-title">{{ $products->Brand_name }}</a>
+                                                </div>
+                                                <div class="name">
+                                                    <a href="#">{{ $products->Version_name }}</a>
+                                                </div>
+                                                <div class="price">
+                                                    <span class="price-new">{{ number_format($products->price, 0, ',', '.') }}₫</span>
+                                                </div>
+                                            </div>
+                                            <div class="tag">
+                                                <span class="tag-new">#NEW</span>
+                                                <span class="tag-discount"></span>
+                                            </div>
+                                            <div class="product-layout--hover"></div>
+                                        </div>
+                                    </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
@@ -355,12 +457,12 @@
                         </div>
                         <div class="main-products">
                             <div class="row g-0">
-                                @foreach ($version->reverse()->take(1) as $products)
+                                @foreach ($product as $produc)
                                     <div class="col-2-4">
                                         <div class="product-layout">
-                                            <a href="#" class="product-image">
+                                            <a href="{{ route('user.productVersion.pversion', ['id' => $produc->product_id]) }}" class="product-image">
                                                 <img
-                                                    src="{{ asset(Storage::url('public/admin/'. $products->image)) }}"
+                                                    src="{{ asset(Storage::url('public/admin/'. $produc->image)) }}"
                                                     width="100%"
                                                     height="238.387"
                                                     alt=""
@@ -369,13 +471,13 @@
                                             </a>
                                             <div class="product-caption">
                                                 <div class="brand">
-                                                    <a href="#" class="brand-title">{{ $products->Brand_name }}</a>
+                                                    <a href="#" class="brand-title">{{ $produc->Brand_name }}</a>
                                                 </div>
                                                 <div class="name">
-                                                    <a href="#">{{ $products->product_name }}</a>
+                                                    <a href="#">{{ $produc->product_name }}</a>
                                                 </div>
                                                 <div class="price">
-                                                    <span class="price-new">{{ $products->price}}₫</span>
+                                                    <span class="price-new">{{ $produc->price}}₫</span>
                                                 </div>
                                             </div>
                                             <div class="tag">
@@ -390,498 +492,11 @@
                         </div>
                     </div>
 
+
                     <!-- Thương hiệu nổi bật -->
 
                     <!-- Sản phẩm bạn vừa xem -->
-                    <div class="main-products-wrapper">
-                        <div class="title-wrapper">
-                            <h3>SẢN PHẨM BẠN VỪA XEM</h3>
-                            <div class="title-divider"></div>
-                            <div class="subtitle">#VIEW</div>
-                        </div>
-                        <div class="main-products">
-                            <div class="row g-0">
-                                <div class="col-2-4">
-                                    <div class="product-layout">
-                                        <a href class="product-image">
-                                            <img
-                                                src="https://xgear.net/wp-content/uploads/2022/12/Laptop-Gaming-Asus-TUF-F15-FX507ZC-HN124W.jpg"
-                                                width="100%"
-                                                height="238.387"
-                                                alt
-                                                title
-                                            />
-                                        </a>
-                                        <div class="product-caption">
-                                            <div class="brand">
-                                                <a href class="brand-title">ASUS</a>
-                                            </div>
-                                            <div class="name">
-                                                <a href
-                                                >Laptop Gaming Asus TUF F15 FX507ZC-HN124W i7
-                                                    RTX3050</a
-                                                >
-                                            </div>
-                                            <div class="price">
-                                                <span class="price-new">17.000.000₫</span>
-                                                <span class="price-old">17.000.000₫</span>
-                                            </div>
-                                        </div>
-                                        <div class="tag">
-                                            <span class="tag-new">New</span>
-                                            <span class="tag-discount"></span>
-                                        </div>
-                                        <div class="product-layout--hover"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Tin tức -->
-                    <div class="main-products-wrapper">
-                        <div class="title-wrapper">
-                            <h3>TIN TỨC MYSHOES.VN</h3>
-                            <div class="title-divider"></div>
-                            <div class="subtitle">#BLOG</div>
-                        </div>
-                        <div class="slider-card">
-                            <div class="swipper">
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide px-2">
-                                    <div class="card-item">
-                                        <a class="card-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/blog/03.01/chon-nuoc-hoa-theo-tam-trang-elle-man-cover-1-400x250h.jpeg"
-                                                alt
-                                            />
-                                            <div class="card-author">Myshoes.vn</div>
-                                        </a>
-                                        <div class="card-caption">
-                                            <a class="card-name"
-                                            >Top những mùi hương nước hoa nam được yêu thích
-                                                nhất năm 2023</a
-                                            >
-                                            <span class="card-desc"
-                                            >Nếu bạn đang muốn gây ấn tượng và thu hút sự chú ý
-                            của người phụ nữ mà bạn đang để mắt tới. Đầu
-                            tiên..</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button id="prev"><</button>
-                            <button id="next">></button>
-                        </div>
-                    </div>
-
-                    <!-- Feedback -->
-                    <div class="main-products-wrapper">
-                        <div class="title-wrapper">
-                            <h3>KHÁCH HÀNG NÓI VỀ MYSHOES.VN</h3>
-                            <div class="title-divider"></div>
-                            <div class="subtitle">#FEEDBACK</div>
-                        </div>
-                        <div class="slider-card">
-                            <div class="swipper-2">
-                                <div class="col-3 swipper-slide-2 px-2">
-                                    <div class="feedback-item">
-                                        <div class="feedback-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/lookbook/IMG_181711-500x500.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div class="feedback-caption">
-                          <span class="feedback-text"
-                          >Tôi đã mua cho cả 2 vợ chồng giày của Myshoes.vn và
-                            thật sự nó vô cùng chất lượng. Hàng đảm bảo chính
-                            hãng 100% và chính sách bảo hành rất yên tâm ạ. Cảm
-                            ơn Myshoes.vn!</span
-                          >
-                                            <span class="feedback-name">- Chị Thanh Thủy -</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide-2 px-2">
-                                    <div class="feedback-item">
-                                        <div class="feedback-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/lookbook/IMG_181711-500x500.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div class="feedback-caption">
-                          <span class="feedback-text"
-                          >Tôi đã mua cho cả 2 vợ chồng giày của Myshoes.vn và
-                            thật sự nó vô cùng chất lượng. Hàng đảm bảo chính
-                            hãng 100% và chính sách bảo hành rất yên tâm ạ. Cảm
-                            ơn Myshoes.vn!</span
-                          >
-                                            <span class="feedback-name">- Chị Thanh Thủy -</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide-2 px-2">
-                                    <div class="feedback-item">
-                                        <div class="feedback-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/lookbook/IMG_181711-500x500.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div class="feedback-caption">
-                          <span class="feedback-text"
-                          >Tôi đã mua cho cả 2 vợ chồng giày của Myshoes.vn và
-                            thật sự nó vô cùng chất lượng. Hàng đảm bảo chính
-                            hãng 100% và chính sách bảo hành rất yên tâm ạ. Cảm
-                            ơn Myshoes.vn!</span
-                          >
-                                            <span class="feedback-name">- Chị Thanh Thủy -</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide-2 px-2">
-                                    <div class="feedback-item">
-                                        <div class="feedback-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/lookbook/IMG_181711-500x500.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div class="feedback-caption">
-                          <span class="feedback-text"
-                          >Tôi đã mua cho cả 2 vợ chồng giày của Myshoes.vn và
-                            thật sự nó vô cùng chất lượng. Hàng đảm bảo chính
-                            hãng 100% và chính sách bảo hành rất yên tâm ạ. Cảm
-                            ơn Myshoes.vn!</span
-                          >
-                                            <span class="feedback-name">- Chị Thanh Thủy -</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide-2 px-2">
-                                    <div class="feedback-item">
-                                        <div class="feedback-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/lookbook/IMG_181711-500x500.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div class="feedback-caption">
-                          <span class="feedback-text"
-                          >Tôi đã mua cho cả 2 vợ chồng giày của Myshoes.vn và
-                            thật sự nó vô cùng chất lượng. Hàng đảm bảo chính
-                            hãng 100% và chính sách bảo hành rất yên tâm ạ. Cảm
-                            ơn Myshoes.vn!</span
-                          >
-                                            <span class="feedback-name">- Chị Thanh Thủy -</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide-2 px-2">
-                                    <div class="feedback-item">
-                                        <div class="feedback-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/lookbook/IMG_181711-500x500.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div class="feedback-caption">
-                          <span class="feedback-text"
-                          >Tôi đã mua cho cả 2 vợ chồng giày của Myshoes.vn và
-                            thật sự nó vô cùng chất lượng. Hàng đảm bảo chính
-                            hãng 100% và chính sách bảo hành rất yên tâm ạ. Cảm
-                            ơn Myshoes.vn!</span
-                          >
-                                            <span class="feedback-name">- Chị Thanh Thủy -</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide-2 px-2">
-                                    <div class="feedback-item">
-                                        <div class="feedback-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/lookbook/IMG_181711-500x500.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div class="feedback-caption">
-                          <span class="feedback-text"
-                          >Tôi đã mua cho cả 2 vợ chồng giày của Myshoes.vn và
-                            thật sự nó vô cùng chất lượng. Hàng đảm bảo chính
-                            hãng 100% và chính sách bảo hành rất yên tâm ạ. Cảm
-                            ơn Myshoes.vn!</span
-                          >
-                                            <span class="feedback-name">- Chị Thanh Thủy -</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3 swipper-slide-2 px-2">
-                                    <div class="feedback-item">
-                                        <div class="feedback-img">
-                                            <img
-                                                src="https://myshoes.vn/image/cache/catalog/lookbook/IMG_181711-500x500.jpg"
-                                                alt
-                                            />
-                                        </div>
-                                        <div class="feedback-caption">
-                          <span class="feedback-text"
-                          >Tôi đã mua cho cả 2 vợ chồng giày của Myshoes.vn và
-                            thật sự nó vô cùng chất lượng. Hàng đảm bảo chính
-                            hãng 100% và chính sách bảo hành rất yên tâm ạ. Cảm
-                            ơn Myshoes.vn!</span
-                          >
-                                            <span class="feedback-name">- Chị Thanh Thủy -</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button id="prev-2"><</button>
-                            <button id="next-2">></button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1017,5 +632,6 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"
 ></script>
+
 </body>
 </html>

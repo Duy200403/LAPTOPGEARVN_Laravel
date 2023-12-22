@@ -52,19 +52,31 @@
                     </button>
                 </form>
                 <div class="classic-wrapper">
-                    <div class="accounts">
-                        <a href="?controller=login&action=login" class="accounts-link">
-                            <i class='bx bxs-user' ></i>
-                            <div class="links-text">
-                                <span>Tài khoản</span>
-                                <span>Đăng nhập/ Đăng ký</span>
+                    @if(Auth::guard('customers')->check())
+                        <div class="accounts">
+                            <a href="?controller=login&action=login" class="accounts-link">
+                                <i class='bx bxs-user'></i>
+                                <div class="links-text">
+                                    <span>Tài khoản</span>
+                                    <span>{{ Auth::guard('customers')->user()->name }}</span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu-accounts">
+                                <span class="login"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                <a href="{{ route('user.login.logout') }}">Logout</a></span>
                             </div>
-                        </a>
-                        <div class="dropdown-menu-accounts">
-                            <span class="login"><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                                <a href="{{ route('user.login.logout') }}"  >Logout</a></span>
                         </div>
-                    </div>
+                    @else
+                        <div class="accounts">
+                            <a href="?controller=login&action=login" class="accounts-link">
+                                <i class='bx bxs-user'></i>
+                                <div class="links-text">
+                                    <span>Tài khoản</span>
+                                    <span>Đăng nhập/ Đăng ký</span>
+                                </div>
+                            </a>
+                        </div>
+                    @endif
                     <div class="cart">
                         <a href="{{ route('home.showCart') }}" class="cart-link hvr-icon-grow">
                             <i class='bx bx-cart-alt'></i>
@@ -170,6 +182,8 @@
                             <td style="font-weight: 700;">
                                 @if ($order->Status === 'Shipping')
                                     <span style="color: #ff0303; font-size:15px " >Không thể hủy đơn hàng vì đang vận chuyển</span>
+                                @elseif($order->Status === 'Đã Nhận Hàng')
+                                    <span style="color: #ff0303; font-size:15px " >Đã Nhận Hàng Thành Công</span>
                                 @elseif ($order->Status === 'Pending' || $order->Status === 'Confirmed')
                                     <button id="cancelButton" class="update-cart cancel-order">Hủy Đơn Hàng</button>
                                     <span id="cancelMessage" style="display: none;">Đơn hàng đã được hủy</span>

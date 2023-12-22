@@ -10,7 +10,6 @@
     <title>LapTop</title>
     {{--    <link rel="stylesheet" href="/Public/Icons/fontawesome/css/all.min.css" />--}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-
     <link rel="stylesheet" href=" {{asset('user/Icons/fontawesome/css/all.min.css')}} ">
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -29,7 +28,7 @@
         href=" {{asset('user/Css/Client/base/root.css')}}"
     />
     <link rel="stylesheet" href="{{asset('user/Css/Client/Effects/hover.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/login.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/register.css')}}" />
 </head>
 <body>
 <div class="site-wrapper">
@@ -53,7 +52,8 @@
                 </form>--}}
                 <div class="classic-wrapper">
                     <div class="accounts">
-                        <a href="?controller=login&action=login" class="accounts-link">
+                        <!-- Chưa login -->
+                        <a href class="accounts-link">
                             <i class='bx bxs-user'></i>
                             <div class="links-text">
                                 <span>Tài khoản</span>
@@ -72,32 +72,24 @@
                                 >Đăng ký</span
                             >
                         </div>
-                        <!-- <a href='?controller=login&action=login' class='accounts-link'>
-                                                <i class='fa-solid fa-user'></i>
-                                                <div class='links-text'>
-                                                    <span>Tài khoản</span>
-                                                    <span>Chỉnh sửa / Thoát</span>
-                                                </div>
-                                            </a>
-                                            <div class='dropdown-menu-accounts logined'>
-                                                <span class='login'><i class='fa-solid fa-user'></i>Tài khoản của tôi</span>
-                                                <span class='logout'><a href='?controller=admin'>&diams; Trang quản trị</a></span>
-                                                <span class='logout'><i class='fa-solid fa-cart-shopping'></i>Đơn hàng của tôi</span>
-                                                <span class='exit'><i class='fa-solid fa-arrow-right-to-bracket'></i><a href='?controller=login&action=logout'>Thoát</a></span>
-                                            </div> -->
+
+                        <!-- Đã login -->
+                        <!-- <a href="" class="accounts-link">
+                                        <i class="fa-solid fa-user"></i>
+                                        <div class="links-text">
+                                            <span>Tài khoản</span>
+                                            <span>Chỉnh sửa / Thoát</span>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu-accounts logined">
+                                        <span class="login"><i class="fa-solid fa-user"></i>Tài khoản của tôi</span>
+                                        <span class="logout"><i class="fa-solid fa-cart-shopping"></i>Đơn hàng của tôi</span>
+                                        <span class="exit"><i class="fa-solid fa-arrow-right-to-bracket"></i>Thoát</span>
+                                    </div> -->
                     </div>
-                    {{--<div class="cart">
-                        <a href="?redirect=cart" class="cart-link hvr-icon-grow">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                        <span class="quantity">!</span>
-                        <div class="cart-empty">
-                            <span>Không có sản phẩm trong giỏ hàng!</span>
-                        </div>
-                    </div>--}}
+
                 </div>
             </div>
-
         </div>
     </header>
     <div class="body">
@@ -113,49 +105,52 @@
                 </div>
             </div>
             <div class="col-7-2">
-                <div class="content">
-                    <div class="row g-0">
-                        <div class="col-6">
-                            <div class="well">
-                                <h2>KHÁCH HÀNG MỚI</h2>
-                                <p>
-                                    Bằng cách tạo tài khoản bạn sẽ có thể mua sắm nhanh hơn và
-                                    nhiều chương trình mua sắm ưu đãi hơn dành riêng cho khách
-                                    hàng thân thiết.
-                                </p>
-                                <a href="{{route('user.login.hi')}}" class="loginbtn">ĐĂNG KÝ</a>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="login">
-                                <h2>THÔNG TIN ĐĂNG NHẬP</h2>
-                                <form
-                                    method="POST"
-                                    action="{{ route('user.login.loginProcess') }}"
-                                >
-                                @csrf
-                                    <div class="register-form">
-                                        <input
-                                            type="email"
-                                            placeholder="Email: "
-                                            name="email"
-                                            required
-                                        />
-                                        <input
-                                            type="password"
-                                            placeholder="Mật khẩu: "
-                                            name="password"
+                <div class="register">
+                    <h2>THÔNG TIN ĐĂNG KÝ</h2>
+                    <form method="post" action="{{route('user.login.rset')}}">
+                        @csrf
+                        <div class="register-form">
+                            <input
+                                type="text"
+                                placeholder="Họ và tên: "
+                                name="name"
+                                id="name"
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="Địa chỉ: "
+                                name="address"
+                                id="address"
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="Email: "
+                                name="email"
+                                id="email"
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="Điện thoại: "
+                                name="phone_number"
+                                id="phone_number"
+                                required
+                            />
+                            <input
+                                type="password"
+                                placeholder="Mật khẩu: "
+                                name="password"
+                                id="password"
+                                required
+                            />
 
-                                            required
-                                        />
-                                        <button type="submit" class="loginbtn">
-                                            <a>ĐĂNG NHẬP</a>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+                            <button type="submit" class="registerbtn">
+                                <a>ĐĂNG KÝ</a>
+                            </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="col-2-4 border-left">

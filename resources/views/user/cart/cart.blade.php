@@ -48,23 +48,35 @@
                 <form class="search-wrapper" action method="POST">
                     <input type="text" name="by" placeholder="Tìm kiếm sản phẩm..." />
                     <button type="submit" class="search-btn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class='bx bx-search-alt'></i>
                     </button>
                 </form>
                 <div class="classic-wrapper">
-                    <div class="accounts">
-                        <a href="?controller=login&action=login" class="accounts-link">
-                            <i class='bx bxs-user' ></i>
-                            <div class="links-text">
-                                <span>Tài khoản</span>
-                                <span>Đăng nhập/ Đăng ký</span>
+                    @if(Auth::guard('customers')->check())
+                        <div class="accounts">
+                            <a href="?controller=login&action=login" class="accounts-link">
+                                <i class='bx bxs-user'></i>
+                                <div class="links-text">
+                                    <span>Tài khoản</span>
+                                    <span>{{ Auth::guard('customers')->user()->name }}</span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu-accounts">
+                                <span class="login"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                <a href="{{ route('user.login.logout') }}">Logout</a></span>
                             </div>
-                        </a>
-                        <div class="dropdown-menu-accounts">
-                            <span class="login"><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                                <a href="{{ route('user.login.logout') }}"  >Logout</a></span>
                         </div>
-                    </div>
+                    @else
+                        <div class="accounts">
+                            <a href="?controller=login&action=login" class="accounts-link">
+                                <i class='bx bxs-user'></i>
+                                <div class="links-text">
+                                    <span>Tài khoản</span>
+                                    <span>Đăng nhập/ Đăng ký</span>
+                                </div>
+                            </a>
+                        </div>
+                    @endif
                     <div class="cart">
                         <a href="{{ route('home.showCart') }}" class="cart-link hvr-icon-grow">
                             <i class='bx bx-cart-alt'></i>
@@ -80,14 +92,14 @@
                         </a>
                     </div>
                 </div>
-                </div>
             </div>
         </div>
-    </header>
+</div>
+</header>
 
 
-    <div class="body">
-        <div class="checkout-cart">
+<div class="body">
+    <div class="checkout-cart">
         <div class="row g-0">
             <div class="col-7-5">
                 <div class="cart-desc">
@@ -107,227 +119,228 @@
                             <tbody>
                             @if(Session::has('cart'))
 
-                            <!-- Kiểm tra nếu $cart là mảng -->
-                            @if (count(Session::get('cart')) > 0)
-                            @foreach (Session::get('cart') as $id => $version)
+                                <!-- Kiểm tra nếu $cart là mảng -->
+                                @if (count(Session::get('cart')) > 0)
+                                    @foreach (Session::get('cart') as $id => $version)
 
-                                <tr>
-                                    <td>
-                                        <img class="td-img" src="{{ asset(Storage::url('public/admin/' . $version['image'])) }}">
-                                    </td>
-                                    <td>
-                                        <a href="#" class="td-name">{{ $version['Version_name'] }}</a>
-                                    </td>
-                                    <td class="td-quantity">
-                                        <div class="product-quantity">
-                                            {{--<input name="quantity[{{ $id }}]" class="test" type="number" min="1" value="{{ $version['quantity'] }}">--}}
-                                            <input name="quantity[{{ $id }}]" class="test" type="number" min="1" value="{{ $version['quantity'] }}" id="quantity-{{ $id }}">
+                                        <tr>
+                                            <td>
+                                                <img class="td-img" src="{{ asset(Storage::url('public/admin/' . $version['image'])) }}">
+                                            </td>
+                                            <td>
+                                                <a href="#" class="td-name">{{ $version['Version_name'] }}</a>
+                                            </td>
+                                            <td class="td-quantity">
+                                                <div class="product-quantity">
+                                                    {{--<input name="quantity[{{ $id }}]" class="test" type="number" min="1" value="{{ $version['quantity'] }}">--}}
+                                                    <input name="quantity[{{ $id }}]" class="test" type="number" min="1" value="{{ $version['quantity'] }}" id="quantity-{{ $id }}">
 
-                                            <span class="plus hvr-fade-for-icon" onclick="increaseQuantity({{ $id }})">+</span>
-                                            <span class="minus hvr-fade-for-icon" onclick="decreaseQuantity({{ $id }})">-</span>
-                                            @csrf
-                                        </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('home.deleteCart', ['id' => $id]) }}" class="td-delete">
-                                            Xóa
-                                        </a>
-                                    </td>
-                                    <td>{{ number_format($version['price']) }}₫</td>
-                                    <td>{{ number_format($version['quantity'] * $version['price']) }}₫</td>
-                                </tr>
-                            @endforeach
-                            @else
-                                <tr>
-                                    <td colspan="6">Không có sản phẩm nào trong giỏ hàng</td>
-                                </tr>
-                            @endif
-                            <!-- Xử lý khi $cart không phải là mảng, ví dụ hiển thị thông báo hoặc thực hiện các xử lý khác -->
-`                           @endif
-                            </tbody>
-                        </table>
-
-                        <div class="submit-btn">
-                            <button href="" type="submit" class="update-cart">Cập nhật giỏ hàng</button>
-                            <a href="{{ route('user.cartHistory.history') }}" type="submit" class="update-cart">Lịch Sử Đơn Hàng</a>
-                        </div>
-
-                    </form>
-
+                                                    <span class="plus hvr-fade-for-icon" onclick="increaseQuantity({{ $id }})">+</span>
+                                                    <span class="minus hvr-fade-for-icon" onclick="decreaseQuantity({{ $id }})">-</span>
+                                                    @csrf
+                                                </div>
                 </div>
-            </div>
+                </td>
+                <td>
+                    <a href="{{ route('home.deleteCart', ['id' => $id]) }}" class="td-delete">
+                        Xóa
+                    </a>
+                </td>
+                <td>{{ number_format($version['price']) }}₫</td>
+                <td>{{ number_format($version['quantity'] * $version['price']) }}₫</td>
+                </tr>
+                @endforeach
+                @else
+                    <tr>
+                        <td colspan="6">Không có sản phẩm nào trong giỏ hàng</td>
+                    </tr>
+                @endif
+                <!-- Xử lý khi $cart không phải là mảng, ví dụ hiển thị thông báo hoặc thực hiện các xử lý khác -->
+                                         @endif
+                </tbody>
+                </table>
 
-            <div class="col-4-2 ms-5">
-                <form class="cart-payment" method="POST" action="{{ route('home.buy')}} ">
-                    @csrf
-                    <div class="panels-total">
-                        <h4>Thanh toán tại đây !</h4>
-                        <div class="cart-total">
-                            <table class="table table-bordered">
-                                <tbody>
-                                <tr>
-                                    <td style="font-weight: 700;">Thành tiền:</td>
-                                    <td>
-                                        <input class="td-input" type="text" readonly value="{{number_format($totalPrice) }} ₫">
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="paymentMethod" style="font-size: 13px">Chọn phương thức thanh toán:</label>
-                        <select style="font-size: 15px ; margin-bottom: 50px; color: #fa4300" class="form-control" name="payment_methods_id" id="paymentMethod">
-                            <option value="" selected disabled>Hãy chọn phương thức thanh toán</option>
-                            @foreach($payment as $or)
-                                <option style="font-size: 15px"  value="{{ $or->id }}">{{ $or->Method }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <br>
-                    <div class="btn-payment">
-                        <button id="paymentButton" >Thanh toán</button>
-                    </div>
+                <div class="submit-btn">
+                    <button href="" type="submit" class="update-cart">Cập nhật giỏ hàng</button>
+                    <a href="{{ route('user.cartHistory.history') }}" type="submit" class="update-cart">Lịch Sử Đơn Hàng</a>
+                </div>
 
                 </form>
+
             </div>
         </div>
-    </div>
-    <form class="col-md-5 ml-8" id="paymentForm">
-        <div class="cart-page-total" id="qrCodeSection" style="display: none">
-            <h2>QR Code</h2>
-            <ul style="width: 251.6px; margin-left: 150px;">
-                <li>
-                    <img src="{{ asset(Storage::url('public/admin/hihi.jpg' )) }}" style="width: 100%;">
-                </li>
-            </ul>
-            {{--                                    <button type="submit" style="width: 150px; text-align: center;" id="buyNowButton">Buy Now</button>--}}
-        </div>
-    </form>
-    </div>
-    <footer>
-        <div class="footer">
-            <div class="footer-wrapper">
-                <div class="row g-0">
-                    <div class="col-6">
-                        <div class="title-module">
-                            <h3 class="title-register">ĐĂNG KÝ NHẬN THÔNG TIN</h3>
-                            <p>
-                                Đăng ký ngay để được cập nhật sớm nhất những thông tin hữu
-                                ích, ữu đãi vô cùng hấp dẫn và những món quà bất ngờ từ
-                                Myshoes.vn!
-                            </p>
-                        </div>
+
+        <div class="col-4-2 ms-5">
+            <form class="cart-payment" method="POST" action="{{ route('home.buy')}} ">
+                @csrf
+                <div class="panels-total">
+                    <h4>Thanh toán tại đây !</h4>
+                    <div class="cart-total">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <td style="font-weight: 700;">Thành tiền:</td>
+                                <td>
+                                    <input class="td-input" type="text" readonly value="{{number_format($totalPrice) }} ₫">
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-6">
-                        <div class="newsletter-form">
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    class="form-control newsletter-email"
-                                    placeholder="Nhập email của bạn "
-                                />
-                                <div class="input-group-append d-flex">
-                                    <button class="btn btn-danger btn-register" type="button">
-                                        <i class="fa-solid fa-envelope"></i>Đăng Ký
-                                    </button>
-                                </div>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod" style="font-size: 13px">Chọn phương thức thanh toán:</label>
+                    <select style="font-size: 15px ; margin-bottom: 50px; color: #fa4300" class="form-control" name="payment_methods_id" id="paymentMethod">
+                        <option value="" selected disabled>Hãy chọn phương thức thanh toán</option>
+                        @foreach($payment as $or)
+                            <option style="font-size: 15px"  value="{{ $or->id }}">{{ $or->Method }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <br>
+                <div class="btn-payment">
+                    <button id="paymentButton" >Thanh toán</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<form class="col-md-5 ml-8" id="paymentForm">
+    <div class="cart-page-total" id="qrCodeSection" style="display: none">
+        <h2>QR Code</h2>
+        <ul style="width: 251.6px; margin-left: 150px;">
+            <li>
+                <img src="{{ asset(Storage::url('public/admin/QR.jpg' )) }}" style="width: 100%;">
+                <span>ND chuyển khoản: Tên + email TK</span>
+            </li>
+        </ul>
+        {{--                                    <button type="submit" style="width: 150px; text-align: center;" id="buyNowButton">Buy Now</button>--}}
+    </div>
+</form>
+</div>
+<footer>
+    <div class="footer">
+        <div class="footer-wrapper">
+            <div class="row g-0">
+                <div class="col-6">
+                    <div class="title-module">
+                        <h3 class="title-register">ĐĂNG KÝ NHẬN THÔNG TIN</h3>
+                        <p>
+                            Đăng ký ngay để được cập nhật sớm nhất những thông tin hữu
+                            ích, ữu đãi vô cùng hấp dẫn và những món quà bất ngờ từ
+                            Myshoes.vn!
+                        </p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="newsletter-form">
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control newsletter-email"
+                                placeholder="Nhập email của bạn "
+                            />
+                            <div class="input-group-append d-flex">
+                                <button class="btn btn-danger btn-register" type="button">
+                                    <i class="fa-solid fa-envelope"></i>Đăng Ký
+                                </button>
                             </div>
-                            <div class="form-check mt-3">
-                                <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value
-                                    id="flexCheckChecked"
-                                />
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Tôi đã đọc và đồng ý với <span>Chính sách bảo mật</span>
-                                </label>
-                            </div>
+                        </div>
+                        <div class="form-check mt-3">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value
+                                id="flexCheckChecked"
+                            />
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Tôi đã đọc và đồng ý với <span>Chính sách bảo mật</span>
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div class="footer-wrapper">
-                <div class="row g-0 mt-3">
-                    <div class="col-5">
-                        <div class="block-address">
-                            <h3>LAPTOP CHÍNH HÃNG</h3>
-                            <div class="block-header">
-                                <img
-                                    src="https://xgear.net/wp-content/uploads/2023/06/Logo-Xgear-300.png"
-                                    alt
-                                />
-                                <div class="block-wrapper">
+    </div>
+    <div class="footer">
+        <div class="footer-wrapper">
+            <div class="row g-0 mt-3">
+                <div class="col-5">
+                    <div class="block-address">
+                        <h3>LAPTOP CHÍNH HÃNG</h3>
+                        <div class="block-header">
+                            <img
+                                src="https://xgear.net/wp-content/uploads/2023/06/Logo-Xgear-300.png"
+                                alt
+                            />
+                            <div class="block-wrapper">
                       <span
                       >Website được định hướng trở thành hệ thống thương mại
                         điện tử bán giày chính hãng hàng đầu Việt Nam.</span
                       >
-                                    <span>Showroom: 249 Xã Đàn, Đống Đa, Hà Nội</span>
-                                    <span>Hotline: 0973711868</span>
-                                </div>
+                                <span>Showroom: 249 Xã Đàn, Đống Đa, Hà Nội</span>
+                                <span>Hotline: 0973711868</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-2-3">
-                        <div class="about-us">
-                            <h3>VỀ CHÚNG TÔI</h3>
-                            <ul>
-                                <li>
-                                    <a style="color: #fff" href="?redirect=about"
-                                    >Giới thiệu</a
-                                    >
-                                </li>
-                                <li><a>Điều khoản sử dụng</a></li>
-                                <li><a>Chính sách bảo mật</a></li>
-                                <li><a>Tin tức myshoes</a></li>
-                                <li><a>Cơ hội việc làm</a></li>
-                                <li><a>Liên hệ</a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-2-3">
+                    <div class="about-us">
+                        <h3>VỀ CHÚNG TÔI</h3>
+                        <ul>
+                            <li>
+                                <a style="color: #fff" href="?redirect=about"
+                                >Giới thiệu</a
+                                >
+                            </li>
+                            <li><a>Điều khoản sử dụng</a></li>
+                            <li><a>Chính sách bảo mật</a></li>
+                            <li><a>Tin tức myshoes</a></li>
+                            <li><a>Cơ hội việc làm</a></li>
+                            <li><a>Liên hệ</a></li>
+                        </ul>
                     </div>
-                    <div class="col-2-3">
-                        <div class="about-us">
-                            <h3>KHÁCH HÀNG</h3>
-                            <ul>
-                                <li><a>Hướng dẫn mua hàng</a></li>
-                                <li><a>Chính sách đổi trả</a></li>
-                                <li><a>Chính sách bảo hành</a></li>
-                                <li><a>Khách hàng thân thiết</a></li>
-                                <li><a>Hướng dẫn chọn size</a></li>
-                                <li><a>Chương trình khuyến mại</a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-2-3">
+                    <div class="about-us">
+                        <h3>KHÁCH HÀNG</h3>
+                        <ul>
+                            <li><a>Hướng dẫn mua hàng</a></li>
+                            <li><a>Chính sách đổi trả</a></li>
+                            <li><a>Chính sách bảo hành</a></li>
+                            <li><a>Khách hàng thân thiết</a></li>
+                            <li><a>Hướng dẫn chọn size</a></li>
+                            <li><a>Chương trình khuyến mại</a></li>
+                        </ul>
                     </div>
-                    <div class="col-2-3">
-                        <div class="about-us certificate">
-                            <h3>KHÁCH HÀNG</h3>
-                            <div class="certificate-img">
-                                <img
-                                    src="https://images.dmca.com/Badges/DMCA_logo-grn-btn150w.png?ID=1ed4cd9e-5ee4-4b63-95dc-c70388edd3cb"
-                                    alt
-                                />
-                                <img
-                                    src="https://myshoes.vn/image/catalog/logo/logo-bct.png"
-                                    alt
-                                    width="60%"
-                                />
-                            </div>
+                </div>
+                <div class="col-2-3">
+                    <div class="about-us certificate">
+                        <h3>KHÁCH HÀNG</h3>
+                        <div class="certificate-img">
+                            <img
+                                src="https://images.dmca.com/Badges/DMCA_logo-grn-btn150w.png?ID=1ed4cd9e-5ee4-4b63-95dc-c70388edd3cb"
+                                alt
+                            />
+                            <img
+                                src="https://myshoes.vn/image/catalog/logo/logo-bct.png"
+                                alt
+                                width="60%"
+                            />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div class="footer-wrapper">
-                <div class="copyright">Copyright © 2023 Mygroup Tech.,JSC</div>
-            </div>
+    </div>
+    <div class="footer">
+        <div class="footer-wrapper">
+            <div class="copyright">Copyright © 2023 Mygroup Tech.,JSC</div>
         </div>
-    </footer>
+    </div>
+</footer>
 </div>
 
 <script src="{{asset('/Views/Client/cart/handleMoreQuantity.js')}}"></script>

@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+
+@php
+    $totalOrders = \App\Models\Order::count();
+    $totalUsers = \App\Models\Customer::count();
+    $totalSales = \App\Models\DetailedOrders::sum(DB::raw('Amount * PriceVersion'));
+@endphp
+
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -57,7 +64,7 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-4">
-                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-center p-4">
                             <i class="fa fa-shopping-cart fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Số lượng đơn hàng</p>
@@ -66,16 +73,16 @@
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-4">
-                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-center p-4">
                             <i class="fa fa-dollar-sign fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Tổng doanh thu</p>
-                                <h6 class="mb-0">{{ number_format($totalSales, 0, ',', '.') }}</h6>
+                                <h6 class="mb-0">{{ number_format($totalSales, 0, ',', '.') }} đ</h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-4">
-                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-center p-4">
                             <i class="fa fa-users fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2">Số lượng người dùng</p>
@@ -98,9 +105,44 @@
                                 <h6 class="mb-0">Worldwide Sales</h6>
                                 <a href="">Show All</a>
                             </div>
-                            <canvas id="worldwide-sales"></canvas>
+                            <canvas id="total-orders"></canvas>
                         </div>
                     </div>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                    <script>
+                        // Sử dụng Chart.js để tạo biểu đồ
+                        var ctx = document.getElementById('total-orders').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['October', 'November', 'December'],
+                                datasets: [{
+                                    label: 'Số lượng người dùng',
+                                    data: [{{$totalUsers}}],
+                                    backgroundColor: 'rgba(54,162,235,0.71)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1
+
+                                },
+                                    {
+                                        label: 'Số lượng đơn hàng',
+                                        data: [{{$totalOrders}}],
+                                        backgroundColor: 'rgba(255,1,1,0.75)',
+                                        borderColor: 'rgb(194,0,43)',
+                                        borderWidth: 1
+                                    }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        max: 10
+                                    }
+                                }
+                            }
+                        });
+                    </script>
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -110,6 +152,46 @@
                             <canvas id="salse-revenue"></canvas>
                         </div>
                     </div>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                    <script>
+                        // Sử dụng Chart.js để tạo biểu đồ
+                        var ctx = document.getElementById('salse-revenue').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['October', 'November', 'December'],
+                                datasets: [{
+                                    label: 'Tổng số doanh thu',
+                                    data: [{{$totalSales}}],
+                                    backgroundColor: [
+                                        'rgba(0,255,166,0.84)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgb(194,0,43)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
                 </div>
             </div>
             @include('Darkan.content')

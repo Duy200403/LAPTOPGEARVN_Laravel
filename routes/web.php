@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('adminsMiddleware')->get('/', function () {
     return view('Darkan.master');
 });
-Route::get('/',[\App\Http\Controllers\HomeController::class , 'showReports'])->name('reports') ;
+
 
 Route::prefix('/login')->group(function (){
     Route::get('/loginadmin', [\App\Http\Controllers\AdminController::class,'loginadmin'])->name('login.loginadmin');
@@ -43,7 +43,12 @@ Route::prefix('/login')->group(function (){
     Route::get('/', [\App\Http\Controllers\CustomerController::class,'login'])->name('user.login.login');
     Route::post('/loginProcess', [\App\Http\Controllers\CustomerController::class,'loginProcess'])->name('user.login.loginProcess');
     Route::get('/logout', [\App\Http\Controllers\CustomerController::class,'logout'])->name('user.login.logout');
+    Route::get('/register', [\App\Http\Controllers\CustomerController::class,'hi'])->name('user.login.hi');
+    Route::post('/registers', [\App\Http\Controllers\CustomerController::class,'rset'])->name('user.login.rset');
+
 });
+
+
 
 
 
@@ -51,6 +56,7 @@ Route::prefix('/login')->group(function (){
 
 Route::prefix('/home')->group( function (){
     Route::get('/',[\App\Http\Controllers\HomeController::class,'index'])->name('user.home.index');
+    Route::post('/search', [\App\Http\Controllers\HomeController::class,'searchProductByName'])->name('search');
     Route::get('/detail/{id}',[\App\Http\Controllers\HomeController::class,'detail'])->name('user.productDetail.detail');
     Route::get('/cat/{id}',[\App\Http\Controllers\HomeController::class,'cat'])->name('user.category.cat');
     Route::get('/brand/{id}',[\App\Http\Controllers\HomeController::class,'brand'])->name('user.brand.br');
@@ -64,6 +70,7 @@ Route::prefix('/home')->group( function (){
     Route::get('/cartHistory',[\App\Http\Controllers\HomeController::class,'cartHistory'])->name('user.cartHistory.history');
     Route::get('/cartDt/{order_id}',[\App\Http\Controllers\HomeController::class,'cartDt'])->name('user.cartDt.history');
     Route::post('/update-order-status{order_id}',[\App\Http\Controllers\HomeController::class,'cancelOrder'])->name('update.order.status');
+    Route::get('/pversion/{id}',[\App\Http\Controllers\HomeController::class,'pversion'])->name('user.productVersion.pversion');
 
 
 

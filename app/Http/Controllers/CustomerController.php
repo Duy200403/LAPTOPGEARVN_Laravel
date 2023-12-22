@@ -130,4 +130,21 @@ class CustomerController extends Controller
         // Chuyển hướng đến trang đăng nhập
         return redirect()->route('user.login.login');
     }
+
+    public function rset(Request $request){
+        $password = Hash::make($request->input('password'));
+        DB::table('customers')->insert([
+            'name' => $request->input('name'),
+            'password' => $password,
+            'phone_number' => $request->input('phone_number'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+        ]);
+        return Redirect::route('user.login.login');
+    }
+    public function hi()
+    {
+        return view('user.login.rset', [
+        ]);
+    }
 }

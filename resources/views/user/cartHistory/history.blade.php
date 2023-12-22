@@ -45,26 +45,38 @@
                         />
                     </a>
                 </div>
-                <form class="search-wrapper" action method="POST">
+                {{--<form class="search-wrapper" action method="POST">
                     <input type="text" name="by" placeholder="Tìm kiếm sản phẩm..." />
                     <button type="submit" class="search-btn">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
-                </form>
+                </form>--}}
                 <div class="classic-wrapper">
-                    <div class="accounts">
-                        <a href="?controller=login&action=login" class="accounts-link">
-                            <i class='bx bxs-user' ></i>
-                            <div class="links-text">
-                                <span>Tài khoản</span>
-                                <span>Đăng nhập/ Đăng ký</span>
+                    @if(Auth::guard('customers')->check())
+                        <div class="accounts">
+                            <a href="?controller=login&action=login" class="accounts-link">
+                                <i class='bx bxs-user'></i>
+                                <div class="links-text">
+                                    <span>Tài khoản</span>
+                                    <span>{{ Auth::guard('customers')->user()->name }}</span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu-accounts">
+                                <span class="login"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                <a href="{{ route('user.login.logout') }}">Logout</a></span>
                             </div>
-                        </a>
-                        <div class="dropdown-menu-accounts">
-                            <span class="login"><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                                <a href="{{ route('user.login.logout') }}"  >Logout</a></span>
                         </div>
-                    </div>
+                    @else
+                        <div class="accounts">
+                            <a href="?controller=login&action=login" class="accounts-link">
+                                <i class='bx bxs-user'></i>
+                                <div class="links-text">
+                                    <span>Tài khoản</span>
+                                    <span>Đăng nhập/ Đăng ký</span>
+                                </div>
+                            </a>
+                        </div>
+                    @endif
                     <div class="cart">
                         <a href="{{ route('home.showCart') }}" class="cart-link hvr-icon-grow">
                             <i class='bx bx-cart-alt'></i>
